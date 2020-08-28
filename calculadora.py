@@ -7,18 +7,24 @@ main=Tk()
 calculadora=Calculadora()
 
 def introNum(num):
-	valorAMostrar.set(valorAMostrar.get()+num)	
+	print(calculadora.operacionTemp)
+	if calculadora.operacionTemp==0:
+		valorAMostrar.set(valorAMostrar.get()+num)
+	else:
+		valorAMostrar.set(num)
+		calculadora.operacionTemp=0
 
 def realizarOperacion(operacion):
+	calculadora.operacionTemp = operacion
 	calculadora.operacion=operacion
+
 	calculadora.operar(valorAMostrar.get())
-	
+	valorAMostrar.set(calculadora.obtenerResultado())
 
 def mostrarResultado():
 	realizarOperacion(calculadora.operacion)
 	result = calculadora.obtenerResultado()
 	valorAMostrar.set(result)
-
 
 #--- input numeros ----
 frame=Frame(main)
@@ -30,7 +36,6 @@ cuadroNumeros.grid(row=0,column=0,pady=10,padx=10,columnspan=4)
 cuadroNumeros.config(bg="black", fg="#00FF04")
 
 #--- Teclas ----
-
 fteclasnumeros=Frame(main)
 fteclasnumeros.pack()
 
@@ -44,7 +49,7 @@ tecla8.grid(row=1,column=1)
 tecla9=Button(fteclasnumeros,text="9",width="3",command=lambda:introNum("9"))
 tecla9.grid(row=1,column=2)
 
-btnDividir=Button(fteclasnumeros,text="/",width="3",command=lambda:introNum("/") )
+btnDividir=Button(fteclasnumeros,text="/",width="3" )
 btnDividir.grid(row=1,column=3)
 
 # --- fila 2 ---
@@ -57,7 +62,7 @@ tecla5.grid(row=2,column=1)
 tecla6=Button(fteclasnumeros,text="6",width="3",command=lambda:introNum("6"))
 tecla6.grid(row=2,column=2)
 
-btnMultiplicar=Button(fteclasnumeros,text="X",width="3",command=lambda:realizarOperacion(2) )
+btnMultiplicar=Button(fteclasnumeros,text="X",width="3",command=lambda:realizarOperacion(3) )
 btnMultiplicar.grid(row=2,column=3)
 
 # --- fila 3 ---
@@ -70,7 +75,7 @@ tecla2.grid(row=3,column=1)
 tecla3=Button(fteclasnumeros,text="3",width="3",command=lambda:introNum("3"))
 tecla3.grid(row=3,column=2)
 
-btnRestar=Button(fteclasnumeros,text="-",width="3",command=lambda:realizarOperacion(1) )
+btnRestar=Button(fteclasnumeros,text="-",width="3",command=lambda:realizarOperacion(2) )
 btnRestar.grid(row=3,column=3)
 
 # --- fila 4 ---
@@ -83,7 +88,7 @@ btnComa.grid(row=4,column=1)
 btnIgual=Button(fteclasnumeros,text="=",width="3",command=lambda:mostrarResultado())
 btnIgual.grid(row=4,column=2)
 
-btnSumar=Button(fteclasnumeros,text="+",width="3",command=lambda:realizarOperacion(0))
+btnSumar=Button(fteclasnumeros,text="+",width="3",command=lambda:realizarOperacion(1))
 btnSumar.grid(row=4,column=3)
 
 main.mainloop()

@@ -2,7 +2,7 @@ class Calculadora():
 	def __init__(self):
 		self.operacion=""
 		self.__valorTotal=0
-
+		self.operacionTemp=0
 
 	def __sumar(self,num1,num2):
 		try:
@@ -27,24 +27,28 @@ class Calculadora():
 	def introducir_valor(self,valor):
 		print(valor)
 		return valor
-		pass
 
 	def operar(self,valor):
-		self.__valorTotal
-
 		if self.operacion == 0:
+			pass
+		elif self.operacion == 1:
 			try:
 				self.__valorTotal+=int(valor)
 			except:
 				print("no realiza la operacion")
-		elif self.operacion == 1:
+		elif self.operacion == 2:
 			try:
 				self.__valorTotal-=int(valor)
 			except:
 				print("no realiza la operacion")
-		elif self.operacion == 2:
+		elif self.operacion == 3:
 			try:
 				self.__valorTotal**=int(valor)
+			except:
+				print("no realiza la operacion")
+		elif self.operacion == 4:
+			try:
+				self.__valorTotal//=int(valor)
 			except:
 				print("no realiza la operacion")
 		else:
@@ -55,5 +59,7 @@ class Calculadora():
 	def obtenerResultado(self):
 		return self.__valorTotal
 		
-		#3+2-5*2/2
+	def setValorTemporal(self,num):
+		self.__valorTotal=num
+
 
